@@ -1,0 +1,75 @@
+roles=["SuperAdmin","Admin","Editor"]
+
+class User:
+    def __init__(self,ad,soyad,_username,_role):
+        self.name=ad
+        self.surname=soyad
+        self.username=_username
+        self.role=_role
+
+aytac=User("Aytac","Huseynova","tac",roles[0])
+yusif=User("Yusif","Huseynov","yif",roles[1])
+ayten=User("Ayten","Huseynova","ay",roles[2])
+
+users=[aytac,yusif,ayten]
+
+def vezife1():
+        print(f"{vezife1.__name__ } vezifesi  admine aiddir.")
+        return vezife1.__name__
+def vezife2():
+        print(f"{vezife2.__name__ } vezifesi superadmin ve admine aiddir.")
+        return vezife2.__name__
+def vezife3():
+        print(f"{vezife3.__name__ } vezifesi superadmin ve admine aiddir.")
+        return vezife3.__name__
+def vezife4():
+        print(f"{vezife4.__name__ } vezifesi superadmin ve admine aiddir.")
+        return vezife4.__name__
+def vezife5():
+        print(f"{vezife5.__name__ } vezifesi superadmin , admine ve editora aiddir.")
+        return vezife5.__name__
+
+selahiyyetler={
+    "SuperAdmin":[vezife1(),vezife2(),vezife3(),vezife4(),vezife5()],
+    "Admin":[vezife2(),vezife3(),vezife4()],
+    "Editor":[vezife5()]
+}
+
+# role=input("Rol adini daxil edin: ")
+# def assignVezife(roleAdi, vezife):
+#     selahiyyetler[roleAdi] += vezife
+
+#assignVezife("Editor",vezife5())
+
+def vezifeleriTap(_role):
+    for selahiyyet,vezife in selahiyyetler.items():
+        if selahiyyet==_role:
+            print(f"{_role} selahiyyetine mensub istifadecinin melumatlari asagidakilardir: ")
+            for vez in vezife:
+                print(vez)
+
+
+def vezifeleriYoxla(_role,_vezife):
+    for selahiyyet,vezife in selahiyyetler.items():
+        if _role==selahiyyet:
+            for vez in vezife:
+                if _vezife==vez:
+                    print(f"{_role} selahiyyetinin vezifesi {_vezife}dir")
+                    break
+                else:
+                    print("Bele teyinat yoxdur")
+
+vezifeleriYoxla("Editor","vezife5")
+
+checker=False
+
+username=input("Username: ")
+for user in users:
+    if username==user.username:
+        vezifeleriTap(user.role)
+        checker=True
+        break
+
+
+if checker ==False:
+    print("Bu adda istifadeci yoxdur")
